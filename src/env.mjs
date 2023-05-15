@@ -9,10 +9,10 @@ export const env = createEnv({
   server: {
     DATABASE_URL: z.string().url(),
     NODE_ENV: z.enum(["development", "test", "production"]),
-    /*NEXTAUTH_SECRET:
+    NEXTAUTH_SECRET:
       process.env.NODE_ENV === "production"
         ? z.string().min(1)
-        : z.string().min(1).optional(),*/
+        : z.string().min(1).optional(),
     NEXTAUTH_URL: z.preprocess(
       // This makes Vercel deployments not fail if you don't set NEXTAUTH_URL
       // Since NextAuth.js automatically uses the VERCEL_URL if present.
@@ -21,11 +21,10 @@ export const env = createEnv({
       process.env.VERCEL ? z.string().min(1) : z.string().url()
     ),
     // Add `.min(1) on ID and SECRET if you want to make sure they're not empty
-    /*DISCORD_CLIENT_ID: z.string(),
-    DISCORD_CLIENT_SECRET: z.string(),*/
+    DISCORD_CLIENT_ID: z.string(),
+    DISCORD_CLIENT_SECRET: z.string(),
     SLACK_BOT_TOKEN: z.string(),
     SLACK_SIGNING_SECRET: z.string(),
-    //HOST: z.string().url(),
   },
 
   /**
@@ -44,12 +43,11 @@ export const env = createEnv({
   runtimeEnv: {
     DATABASE_URL: process.env.DATABASE_URL,
     NODE_ENV: process.env.NODE_ENV,
-    //NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
-    //DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
-    //DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
+    DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
+    DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
     SLACK_BOT_TOKEN: process.env.SLACK_BOT_TOKEN,
     SLACK_SIGNING_SECRET: process.env.SLACK_SIGNING_SECRET,
-    //HOST: process.env.HOST,
   },
 });

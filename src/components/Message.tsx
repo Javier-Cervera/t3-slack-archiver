@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import type { messagesProps } from "~/pages/index";
+import type { messagesProps } from "~/pages/indexSlack";
 import styles from "styles/Message.module.css";
 
 export default function Message({
