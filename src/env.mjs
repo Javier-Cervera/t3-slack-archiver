@@ -25,7 +25,7 @@ export const env = createEnv({
     DISCORD_CLIENT_SECRET: z.string(),*/
     SLACK_BOT_TOKEN: z.string(),
     SLACK_SIGNING_SECRET: z.string(),
-    HOST: z.string().url(),
+    //HOST: z.string().url(),
   },
 
   /**
@@ -50,6 +50,6 @@ export const env = createEnv({
     //DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
     SLACK_BOT_TOKEN: process.env.SLACK_BOT_TOKEN,
     SLACK_SIGNING_SECRET: process.env.SLACK_SIGNING_SECRET,
-    HOST: process.env.HOST,
+    //HOST: process.env.HOST,
   },
 });
