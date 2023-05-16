@@ -33,7 +33,6 @@ export default function Header({ onSelectedChannelChange }: HeaderProps) {
         onChange={handleSelectChange}
         className="rounded-md border-gray-300"
       >
-        <option value="">Select a channel</option>
         {channels?.map((channel) => (
           <option key={channel} value={channel}>
             {channel}

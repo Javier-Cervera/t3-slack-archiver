@@ -43,45 +43,27 @@ export default async function handler(
 
     case "GET":
       try {
-        const channelId = req.query.channelId;
-        const allMessages = await prisma.message.findMany({
+        const channelName = req.query.channelName as string;
+        const channel = await prisma.channel.findUnique({
           where: {
-            channelId: Number(channelId),
+            name: channelName,
           },
         });
-        allMessages && res.status(200).json(allMessages);
+        if (channel) {
+          const allMessages = await prisma.message.findMany({
+            where: {
+              channelId: channel.id,
+            },
+          });
+          res.status(200).json(allMessages);
+        } else {
+          res.status(404).json({ message: "Channel not found" });
+        }
       } catch (error) {
         if (error instanceof Error) {
           res.status(500).json(error.message);
         }
       }
+      break;
   }
-  /*const client = await clientPromise;
-  const db = client.db("archive");
-
-  switch (req.method) {
-    case "POST":
-      try {
-        const bodyObject: messagesData = JSON.parse(req.body);
-        const message = await db.collection("messages").insertOne(bodyObject);
-        message
-          ? res.status(201).json(message)
-          : res.status(500).json("Failed to add a new message.");
-      } catch (error) {
-        if (error instanceof Error) {
-          res.status(500).json(error.message);
-        }
-      }
-      break;
-    
-      try {
-        const allMessages = await db.collection("messages").find({}).toArray();
-        allMessages && res.status(200).json(allMessages);
-      } catch (error) {
-        if (error instanceof Error) {
-          res.status(500).json(error.message);
-        }
-      }
-      break;
-    }*/
 }
