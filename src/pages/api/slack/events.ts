@@ -20,6 +20,7 @@ export default async function events(
   if (typeof signingSecret === "undefined") {
     throw new Error("Signing secret is undefined");
   }
+
   const type = body.type;
   //console.log(validateSlackRequest(req, signingSecret));
   if (type === "url_verification") {

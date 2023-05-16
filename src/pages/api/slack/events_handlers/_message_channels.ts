@@ -19,14 +19,15 @@ export async function message_channels(
   const date = new Date(body.event_time * 1000);
   // console.log(event);
   try {
-    if (typeof process.env.HOST === "undefined") {
-      throw new Error("HOST environment variable is undefined");
+    // NEXTAUTH_URL used as Host url
+    if (typeof process.env.NEXTAUTH_URL === "undefined") {
+      throw new Error("NEXTAUTH_URL environment variable is undefined");
     }
 
     const channelName = await channelIdToName(body.event.channel);
     const { userName, color } = await userInfo(body.event.user);
 
-    await fetch(`${process.env.HOST}/api/messages`, {
+    await fetch(`${process.env.NEXTAUTH_URL}/api/messages`, {
       method: "POST",
       body: JSON.stringify({
         channel: channelName,

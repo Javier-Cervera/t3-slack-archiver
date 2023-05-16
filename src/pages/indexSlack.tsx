@@ -3,7 +3,6 @@ import type { NextPage } from "next";
 //import useSWR, { Fetcher } from 'swr';
 import Message from "~/components/Message";
 export interface messagesProps {
-  channel?: string;
   userName: string;
   date: string;
   text: string;

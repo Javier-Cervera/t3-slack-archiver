@@ -3,7 +3,6 @@ import type { messagesProps } from "~/pages/indexSlack";
 import styles from "styles/Message.module.css";
 
 export default function Message({
-  channel,
   userName,
   date,
   text,
@@ -21,5 +20,3 @@ export default function Message({
     </div>
   );
 }
-
-// export default Message;
