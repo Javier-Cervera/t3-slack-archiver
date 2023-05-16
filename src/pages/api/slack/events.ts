@@ -38,7 +38,7 @@ export default async function events(
           break;
       }
     } else {
-      console.log("body:", req.body);
+      console.log("body:", body);
     }
   } else {
     res.end();

@@ -1,21 +1,22 @@
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { api } from "~/utils/api";
 
 export default function Header() {
   const [channels, setChannels] = useState<string[]>([]);
 
-  /*  useEffect(() => {
-    // Fetch the channels from the database
-    fetch('/api/channels')
-      .then(response => response.json())
-      .then(data => setChannels(data.channels));
-  }, []);*/
+  useEffect(() => {
+    fetch("/api/channels")
+      .then((response) => response.json())
+      .then((data: { channelNames: string[] }) =>
+        setChannels(data.channelNames)
+      )
+      .catch((error) => console.log(error));
+  }, []);
 
   return (
     <header className="flex items-center justify-between p-4">
       <select className="rounded-md border-gray-300">
-        {channels.map((channel) => (
+        {channels?.map((channel) => (
           <option key={channel} value={channel}>
             {channel}
           </option>
