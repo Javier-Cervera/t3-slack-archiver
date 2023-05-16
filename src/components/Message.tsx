@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import type { messagesProps } from "~/pages/indexSlack";
 import styles from "styles/Message.module.css";
 

@@ -1,8 +1,13 @@
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 
-export default function Header() {
+type HeaderProps = {
+  onSelectedChannelChange: (channel: string | null) => void;
+};
+
+export default function Header({ onSelectedChannelChange }: HeaderProps) {
   const [channels, setChannels] = useState<string[]>([]);
+  const [selectedChannel, setSelectedChannel] = useState("");
 
   useEffect(() => {
     fetch("/api/channels")
@@ -13,9 +18,22 @@ export default function Header() {
       .catch((error) => console.log(error));
   }, []);
 
+  useEffect(() => {
+    onSelectedChannelChange(selectedChannel);
+  }, [selectedChannel, onSelectedChannelChange]);
+
+  function handleSelectChange(event: React.ChangeEvent<HTMLSelectElement>) {
+    setSelectedChannel(event.target.value);
+  }
+
   return (
     <header className="flex items-center justify-between p-4">
-      <select className="rounded-md border-gray-300">
+      <select
+        value={selectedChannel}
+        onChange={handleSelectChange}
+        className="rounded-md border-gray-300"
+      >
+        <option value="">Select a channel</option>
         {channels?.map((channel) => (
           <option key={channel} value={channel}>
             {channel}
