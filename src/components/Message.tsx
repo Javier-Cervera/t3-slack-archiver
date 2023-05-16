@@ -1,6 +1,5 @@
 import React from "react";
-import type { messagesProps } from "~/pages/indexSlack";
-import styles from "styles/Message.module.css";
+import type { messagesProps } from "~/pages/index";
 
 export default function Message({
   userName,
@@ -9,14 +8,17 @@ export default function Message({
   color,
 }: messagesProps) {
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h3 style={{ color: `#${color}` }} className={styles.userName}>
+    <div className="m-2 inline-block rounded-md bg-gray-800 p-2">
+      <div className="flex items-center">
+        <h3
+          className="m-0 p-1 text-lg text-white"
+          style={{ color: `#${color}` }}
+        >
           {userName}
         </h3>
-        <p>{date}</p>
+        <p className="m-1 mb-0 mt-0 text-sm text-white">{date}</p>
       </div>
-      <p className={styles.text}>{text}</p>
+      <p className="m-0 px-0 py-1 text-base text-white">{text}</p>
     </div>
   );
 }
